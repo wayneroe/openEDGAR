@@ -1,17 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 from cached_property import cached_property
-from range_key_dict import RangeKeyDict
-from utils.mapping import Mapper
-from utils.sic import *
+from openEDGAR.utils.mapping import Mapper
+from openEDGAR.utils.sic import *
+import regex
 
 mapper = Mapper()
 
 
 class Company(object):
-  """An EDGAR company
-
-  """
+    """An EDGAR company
+    """
 
   def __init__(self, cik):
     self.cik = cik
@@ -30,22 +29,23 @@ class Company(object):
     self.fiscal_year_end =
     """
 
-    """
-		self.business_adress = 
-    self.mailing_adress = 	  
-    """
+        """
+        self.business_adress =
+        self.mailing_adress =
+        """
 
-  @cached_property
-  def name(self):
-    pass
+    @cached_property
+    def name(self):
+        pass
 
-  @classmethod
-  def fromName(cls, name):
-    return cls(mapper.name[name])
+    @classmethod
+    def fromName(cls, name):
+        return cls(mapper.name_to_cik[name])
 
-  @classmethod
-  def fromTicker(cls, ticker):
-    return cls(mapper.ticker[ticker])
+    @classmethod
+    def fromTicker(cls, ticker):
+        return cls(mapper.ticker_to_cik[ticker])
+
 
 c1 = Company(1318605)
 
